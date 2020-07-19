@@ -32,7 +32,7 @@ async function getListings() {
           <span class="card-value">$${roomData.moneyLeftToMinimumOrder}</span>
           <br />
           <br />
-          <button class="btn btn-light" onclick="handleJoinGroup('${roomData.link}')">Join Group </button>
+          <button class="btn btn-join-group" onclick="handleJoinGroup('${roomData.link}')">Join Group </button>
         </div>
       </div>
     </div>`;
