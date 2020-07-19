@@ -7,6 +7,7 @@ async function getListings() {
     console.log(entries);
     entries.forEach(room => {
         var roomData = room[1];
+        var roomId = room[0];
         childHtmlString += `<div class="shadow-sm p-3 mb-5 bg-white rounded listing-card">
       <div class="row form-group">
         <div class="col-md-6 mb-3 mb-md-0">
@@ -32,7 +33,7 @@ async function getListings() {
           <span class="card-value">$${roomData.moneyLeftToMinimumOrder}</span>
           <br />
           <br />
-          <button class="btn btn-join-group" onclick="handleJoinGroup('${roomData.link}')">Join Group </button>
+          <button class="btn btn-join-group" onclick="handleJoinGroup('./roomChat.html?${roomId}')">Join Group </button>
         </div>
       </div>
     </div>`;
