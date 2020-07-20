@@ -1,11 +1,7 @@
 package com.google.sps.servlets;
 
-import com.google.sps.authentication.AuthenticationHandler;
-import com.google.appengine.api.users.User;
 import com.google.sps.data.Message;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.auth.oauth2.GoogleCredentials;
+import com.google.sps.firebase.FirebaseHelper;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.appengine.api.blobstore.BlobInfo;
 import com.google.appengine.api.blobstore.BlobInfoFactory;
@@ -31,26 +27,7 @@ public class TextMessageServlet extends HttpServlet {
 
     @Override
     public void init() {
-        try {
-            // Fetch the service account key JSON file contents
-            FileInputStream serviceAccount = new FileInputStream("./key.json");
-
-            // Initialize the app with a service account, granting admin privileges
-            FirebaseOptions options = new FirebaseOptions.Builder()
-                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .setDatabaseUrl("https://summer20-sps-47.firebaseio.com")
-                .build();
-            if (FirebaseApp.getApps().isEmpty()) {
-                FirebaseApp.initializeApp(options);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        AuthenticationHandler handler = new AuthenticationHandler();
-        User curr = handler.getCurrentUser();
-        username = curr.getNickname();
+        username = (new FirebaseHelper()).getUserName();
     }
 
     @Override
