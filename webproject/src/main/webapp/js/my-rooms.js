@@ -1,14 +1,12 @@
 async function getMyRooms() {
     var response = await fetch("/myRooms");
-    var responseText = await response.text();
-    console.log(responseText);
+    var responseText = await response.json();
     var entries = responseText.split(" ");
     let childHtmlString = "";
     for (var i = 0; i < entries.length; i++) {
         let room = entries[i];
         await firebase.database().ref('rooms/' + room).once('value', function(snapshot) {
             var snap = snapshot.val();
-            console.log(snap);
         childHtmlString += `<div class="shadow-sm p-3 mb-5 bg-white rounded listing-card">
       <div class="row form-group">
         <div class="col-md-6 mb-3 mb-md-0">

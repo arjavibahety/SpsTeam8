@@ -3,7 +3,7 @@ package com.google.sps.servlets;
 import com.google.appengine.api.users.User;
 import com.google.sps.authentication.AuthenticationHandler;
 import com.google.sps.data.Room;
-
+import com.google.gson.Gson;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +16,7 @@ import java.net.URL;
 import java.util.Map;
 
 public class MyRoomsServlet extends HttpServlet {
+    private static final Gson gson = new Gson();
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User user = (new AuthenticationHandler()).getCurrentUser();
@@ -40,10 +41,9 @@ public class MyRoomsServlet extends HttpServlet {
                 }
             }
             jsonResponse = jsonResponse.substring(0, jsonResponse.length() - 1);
-            System.out.println(jsonResponse);
         }
 
-        response.setContentType("html/text");
-        response.getWriter().print(jsonResponse);
+        response.setContentType("application/json;charset=UTF-8");
+        response.getWriter().print(gson.toJson(jsonResponse));
     }
 }
