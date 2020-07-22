@@ -15,7 +15,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
-@WebServlet("/myRooms")
 public class MyRoomsServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -29,18 +28,22 @@ public class MyRoomsServlet extends HttpServlet {
         con.setDoOutput(true);
 
         String jsonResponse = "";
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
-            StringBuilder firebaseResponse = new StringBuilder();
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()))) {            
             String line;
-
+            String firebaseResponse;
             while ((line = in.readLine()) != null) {
-                firebaseResponse.append(line);
+                String[] rooms = line.split("}");
+                for (String room : rooms) {
+                    String roomID = ((room.split("userEmail")[0]).split("roomId")[1]);
+                    roomID = roomID.substring(3, roomID.length() - 3);
+                    jsonResponse += roomID + " ";
+                }
             }
-
-            jsonResponse = firebaseResponse.toString();
+            jsonResponse = jsonResponse.substring(0, jsonResponse.length() - 1);
+            System.out.println(jsonResponse);
         }
 
-        response.setContentType("application/json;charset=UTF-8");
+        response.setContentType("html/text");
         response.getWriter().print(jsonResponse);
     }
 }

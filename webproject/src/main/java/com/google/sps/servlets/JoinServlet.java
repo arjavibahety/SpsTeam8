@@ -48,9 +48,7 @@ public class JoinServlet extends HttpServlet {
         User user = (new AuthenticationHandler()).getCurrentUser();
         String userEmail = user.getEmail();
         String roomId = request.getParameter("roomId");
-        for (String name: Collections.list(request.getParameterNames())) {
-            System.out.println(name);
-        }
+
         FirebaseDatabase.getInstance().getReference("UserRoom").push().setValueAsync(new UserRoom(userEmail, roomId));
 
         response.setStatus(200);
