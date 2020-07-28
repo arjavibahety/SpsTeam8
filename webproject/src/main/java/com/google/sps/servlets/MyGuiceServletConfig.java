@@ -5,6 +5,8 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
+import com.google.sps.services.LandingService;
+import com.google.sps.services.LandingServiceImpl;
 
 public class MyGuiceServletConfig extends GuiceServletContextListener {
 
@@ -15,6 +17,7 @@ public class MyGuiceServletConfig extends GuiceServletContextListener {
       protected void configureServlets() {
         super.configureServlets();
         serve("/landing*").with(LandingServlet.class);
+        bind(LandingService.class).to(LandingServiceImpl.class);
       }
     });
   }

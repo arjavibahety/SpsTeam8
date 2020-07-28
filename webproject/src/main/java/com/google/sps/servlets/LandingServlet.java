@@ -3,6 +3,7 @@ package com.google.sps.servlets;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
+import com.google.sps.services.LandingService;
 import com.google.sps.util.HtmlParser;
 import java.io.IOException;
 
@@ -16,7 +17,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Singleton
 public class LandingServlet extends HttpServlet {
-    @Inject LandingService parsedHtmlString;
+    private LandingService landingService;
+
+    @Inject
+    public LandingServlet(LandingService landingService) {
+        this.landingService = landingService;
+    }
 
     /**
      * Called by the server to allow this servlet to handle a GET request from the landing page.
@@ -27,6 +33,6 @@ public class LandingServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
-        response.getWriter().println(parsedHtmlString);
+        response.getWriter().println(landingService.getParsedHtmlString());
     }
 }
