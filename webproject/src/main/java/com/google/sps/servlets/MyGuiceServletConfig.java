@@ -1,14 +1,21 @@
 package com.google.sps.servlets;
 
-import com.google.inject.servlet.ServletModule;
-import com.google.inject.servlet.GuiceServletContextListener;
+
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.servlet.GuiceServletContextListener;
+import com.google.inject.servlet.ServletModule;
+import com.google.sps.demoModules.LandingModule;
 
 public class MyGuiceServletConfig extends GuiceServletContextListener {
 
   @Override
   protected Injector getInjector() {
-    return Guice.createInjector(new ServletModule());
+    return Guice.createInjector(new ServletModule() {
+      @Override
+      protected void configureServlets() {
+        serve("landing.html").with(LandingServlet.class);
+      }
+    });
   }
 }
