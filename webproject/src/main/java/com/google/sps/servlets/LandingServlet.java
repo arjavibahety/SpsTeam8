@@ -16,12 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Singleton
 public class LandingServlet extends HttpServlet {
-    private final Provider<String> parsedHtmlStringProvider;
+    @Inject LandingService parsedHtmlString;
 
-    @Inject
-    LandingServlet(@Named("parsed-html-string") Provider<String> parsedHtmlStringProvider) {
-        this.parsedHtmlStringProvider = parsedHtmlStringProvider;
-    }
     /**
      * Called by the server to allow this servlet to handle a GET request from the landing page.
      * @param request An HttpServletRequest object that contains the request the client has made of the servlet.
@@ -31,6 +27,6 @@ public class LandingServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
-        response.getWriter().println(parsedHtmlStringProvider.get());
+        response.getWriter().println(parsedHtmlString);
     }
 }
