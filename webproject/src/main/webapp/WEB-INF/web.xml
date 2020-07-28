@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <web-app xmlns="http://appengine.google.com/ns/1.0">
+  <!--  Guice -->
+  <filter>
+    <filter-name>guiceFilter</filter-name>
+    <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>guiceFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!-- Guice Servlet Context Listener -->
+  <listener>
+    <listener-class>com.example.MyGuiceServletConfig</listener-class>
+  </listener>
+
   <!-- Landing Servlet -->
   <servlet>
     <servlet-name>LandingServlet</servlet-name>

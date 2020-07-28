@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/SpsTeam8.iml" filepath="$PROJECT_DIR$/.idea/SpsTeam8.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webproject/webproject.iml" filepath="$PROJECT_DIR$/webproject/webproject.iml" />
+    </modules>
+  </component>
+</project>
