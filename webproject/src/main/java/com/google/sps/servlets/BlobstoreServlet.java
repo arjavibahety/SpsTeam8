@@ -6,10 +6,12 @@ import com.google.sps.services.interfaces.BlobstoreService;
 import com.google.inject.Inject;
 
 import java.io.IOException;
+import javax.inject.Singleton;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@Singleton
 public class BlobstoreServlet extends HttpServlet {
   private BlobstoreService blobstoreService;
 
