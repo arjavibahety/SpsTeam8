@@ -66,13 +66,12 @@ function getUsername() {
 function fetchBlobstoreUrl() {
     fetch('/blobstore')
         .then((response) => {
-            console.log("Response: ", response)
-            return response.text();
-        })
-        .then((imageUploadUrl) => {
-            const messageForm = document.getElementById('image-form');
-            messageForm.action = imageUploadUrl;
-            messageForm.classList.remove('hidden');
+            return response.json();
+        }).then((responseJson) => {
+                const imageUploadUrl = responseJson.url;
+                const messageForm = document.getElementById('image-form');
+                messageForm.action = imageUploadUrl;
+                messageForm.classList.remove('hidden');
         });
 }
 

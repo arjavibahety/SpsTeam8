@@ -26,9 +26,8 @@ public class BlobstoreServlet extends HttpServlet {
    */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get the Blobstore URL
     BlobstoreResponse blobstoreResponse = blobstoreService.execute();
-    response.setContentType("text/html");
+    response.setContentType("application/json; charset=UTF-8;");
     response.getWriter().println(JsonFormat.printer().print(blobstoreResponse));
   }
 }
