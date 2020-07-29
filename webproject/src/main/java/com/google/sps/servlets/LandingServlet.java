@@ -2,7 +2,7 @@ package com.google.sps.servlets;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.google.sps.services.LandingService;
+import com.google.sps.services.interfaces.LandingService;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServlet;

@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package com.google.sps.protoc;
+
+option java_outer_classname = "TextMessageProtoc";
+
+message TextMessageRequest {
+  required string referrer = 1;
+  required string message = 2;
+  required string roomId = 3;
+}
+
+message TextMessageResponse {
+  required string referrer = 1;
+  required string message = 2;
+  required string roomId = 3;
+  required uint64 timestamp = 4;
+}
