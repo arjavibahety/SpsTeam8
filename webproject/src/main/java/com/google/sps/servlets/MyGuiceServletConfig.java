@@ -17,7 +17,7 @@ public class MyGuiceServletConfig extends GuiceServletContextListener {
       protected void configureServlets() {
         // super.configureServlets();
         bind(LandingService.class).to(LandingServiceImpl.class);
-        serve("/*").with(LandingServlet.class);
+        serve("/landing").with(LandingServlet.class);
       }
     });
   }
