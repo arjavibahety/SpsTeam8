@@ -126,14 +126,14 @@
   </servlet-mapping>
 
   <!-- Close Room Servlet -->
-  <servlet>
-    <servlet-name>CloseRoomServlet</servlet-name>
-    <servlet-class>com.google.sps.servlets.CloseRoomServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CloseRoomServlet</servlet-name>
-    <url-pattern>/closeRoom</url-pattern>
-  </servlet-mapping>
+<!--  <servlet>-->
+<!--    <servlet-name>CloseRoomServlet</servlet-name>-->
+<!--    <servlet-class>com.google.sps.servlets.CloseRoomServlet</servlet-class>-->
+<!--  </servlet>-->
+<!--  <servlet-mapping>-->
+<!--    <servlet-name>CloseRoomServlet</servlet-name>-->
+<!--    <url-pattern>/closeRoom</url-pattern>-->
+<!--  </servlet-mapping>-->
 
   <!-- Entry Servlet -->
 <!--  <servlet>-->
