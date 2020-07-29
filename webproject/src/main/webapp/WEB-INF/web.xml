@@ -17,14 +17,14 @@
   </listener>
 
   <!-- Landing Servlet -->
-  <servlet>
+  <!-- <servlet>
     <servlet-name>LandingServlet</servlet-name>
     <servlet-class>com.google.sps.servlets.LandingServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LandingServlet</servlet-name>
     <url-pattern>/landing</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> -->
 
   <!-- Listings Servlet -->
   <servlet>

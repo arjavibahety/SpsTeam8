@@ -33,14 +33,14 @@
       <dependency>
           <groupId>com.google.inject</groupId>
           <artifactId>guice</artifactId>
-          <version>4.2.3</version>
+          <version>4.0</version>
       </dependency>
 
       <dependency>
-          <groupId>com.google.inject.extensions</groupId>
-          <artifactId>guice-servlet</artifactId>
-          <version>3.0</version>
-      </dependency>
+        <groupId>com.google.inject.extensions</groupId>
+        <artifactId>guice-servlet</artifactId>
+        <version>4.0</version>
+    </dependency>
 
       <dependency>
       <groupId>junit</groupId>
@@ -75,8 +75,7 @@
     <plugins>
       <!-- Provides `mvn package appengine:run` for local testing
            and `mvn package appengine:deploy` for deploying. -->
-
-        <plugin>
+      <plugin>
         <groupId>com.google.cloud.tools</groupId>
         <artifactId>appengine-maven-plugin</artifactId>
         <version>2.2.0</version>
