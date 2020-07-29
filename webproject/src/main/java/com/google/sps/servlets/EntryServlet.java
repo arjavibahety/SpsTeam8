@@ -1,7 +1,12 @@
 package com.google.sps.servlets;
 
 import com.google.sps.authentication.AuthenticationHandler;
+import com.google.sps.services.interfaces.EntryService;
+
 import java.io.IOException;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,14 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * A servlet which manages entry into the website.
  */
+@Singleton
 public class EntryServlet extends HttpServlet {
-    private final AuthenticationHandler authenticationHandler;
+    private EntryService entryService;
 
     /**
      * Constructs an instance of the EntryServlet class.
      */
-    public EntryServlet() {
-        authenticationHandler = new AuthenticationHandler();
+    @Inject
+    public EntryServlet(EntryService entryService) {
+        this.entryService = entryService;
     }
 
     /**
@@ -30,7 +37,7 @@ public class EntryServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        if (authenticationHandler.isUserLoggedIn()) {
+        if (entryService.getAuthenticationHandler().isUserLoggedIn()) {
             response.sendRedirect("/listings");
         } else {
             response.sendRedirect("/landing");

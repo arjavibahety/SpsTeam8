@@ -136,14 +136,14 @@
   </servlet-mapping>
 
   <!-- Entry Servlet -->
-  <servlet>
-    <servlet-name>EntryServlet</servlet-name>
-    <servlet-class>com.google.sps.servlets.EntryServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>EntryServlet</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
+<!--  <servlet>-->
+<!--    <servlet-name>EntryServlet</servlet-name>-->
+<!--    <servlet-class>com.google.sps.servlets.EntryServlet</servlet-class>-->
+<!--  </servlet>-->
+<!--  <servlet-mapping>-->
+<!--    <servlet-name>EntryServlet</servlet-name>-->
+<!--    <url-pattern>/</url-pattern>-->
+<!--  </servlet-mapping>-->
 
   <!-- MyOrder Servlet -->
   <servlet>
