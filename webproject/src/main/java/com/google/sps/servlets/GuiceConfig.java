@@ -9,7 +9,7 @@ import com.google.sps.services.interfaces.LandingService;
 import com.google.sps.services.implementations.LandingServiceImpl;
 import com.google.sps.services.interfaces.TextMessageService;
 
-public class GuiceServletConfig extends GuiceServletContextListener {
+public class GuiceConfig extends GuiceServletContextListener {
 
   @Override
   protected Injector getInjector() {

@@ -13,7 +13,7 @@
 
   <!-- Guice Servlet Context Listener -->
   <listener>
-    <listener-class>com.google.sps.servlets.GuiceServletConfig</listener-class>
+    <listener-class>com.google.sps.servlets.GuiceConfig</listener-class>
   </listener>
 
   <!-- Landing Servlet -->
