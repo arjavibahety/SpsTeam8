@@ -68,10 +68,10 @@ function fetchBlobstoreUrl() {
         .then((response) => {
             return response.json();
         }).then((responseJson) => {
-                const imageUploadUrl = responseJson.url;
-                const messageForm = document.getElementById('image-form');
-                messageForm.action = imageUploadUrl;
-                messageForm.classList.remove('hidden');
+            const imageUploadUrl = responseJson.url;
+            const messageForm = document.getElementById('image-form');
+            messageForm.action = imageUploadUrl;
+            messageForm.classList.remove('hidden');
         });
 }
 
