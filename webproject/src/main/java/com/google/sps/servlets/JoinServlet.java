@@ -1,27 +1,17 @@
 package com.google.sps.servlets;
 
-import com.google.appengine.api.users.User;
-import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.protobuf.util.JsonFormat;
 import com.google.sps.authentication.AuthenticationHandler;
-import com.google.sps.data.Message;
-import com.google.sps.data.UserRoom;
-import com.google.sps.firebase.Firebase;
 import com.google.sps.services.interfaces.JoinService;
 import com.google.sps.protoc.JoinProtoc.JoinRequest;
 import com.google.sps.protoc.JoinProtoc.JoinResponse;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Collections;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,7 +29,9 @@ public class JoinServlet extends HttpServlet {
     public void init() {
         try {
             FirebaseOptions options = joinService.getFirebaseOptions();
-            FirebaseApp.initializeApp(options);
+            if (FirebaseApp.getApps().isEmpty()) {
+                FirebaseApp.initializeApp(options);
+            }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
