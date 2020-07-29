@@ -76,14 +76,14 @@
   </servlet-mapping>
 
   <!-- Text Message Servlet -->
-  <servlet>
-    <servlet-name>TextMessageServlet</servlet-name>
-    <servlet-class>com.google.sps.servlets.TextMessageServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>TextMessageServlet</servlet-name>
-    <url-pattern>/text-message</url-pattern>
-  </servlet-mapping>
+<!--  <servlet>-->
+<!--    <servlet-name>TextMessageServlet</servlet-name>-->
+<!--    <servlet-class>com.google.sps.servlets.TextMessageServlet</servlet-class>-->
+<!--  </servlet>-->
+<!--  <servlet-mapping>-->
+<!--    <servlet-name>TextMessageServlet</servlet-name>-->
+<!--    <url-pattern>/text-message</url-pattern>-->
+<!--  </servlet-mapping>-->
 
   <!-- Login Servlet -->
   <servlet>

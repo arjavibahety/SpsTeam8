@@ -34,6 +34,7 @@ public class GuiceConfig extends GuiceServletContextListener {
         serve("/landing").with(LandingServlet.class);
         serve("/blobstore").with(BlobstoreServlet.class);
         serve("/closeRoom").with(CloseRoomServlet.class);
+        serve("/text-message").with(TextMessageServlet.class);
         serve("/join").with(JoinServlet.class);
         serve("/").with(EntryServlet.class);
       }

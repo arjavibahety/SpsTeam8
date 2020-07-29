@@ -2,7 +2,6 @@ package com.google.sps.services.interfaces;
 
 import java.io.IOException;
 
-import com.google.appengine.api.users.User;
 import com.google.firebase.FirebaseOptions;
 import com.google.sps.authentication.AuthenticationHandler;
 import com.google.sps.protoc.JoinProtoc.JoinResponse;

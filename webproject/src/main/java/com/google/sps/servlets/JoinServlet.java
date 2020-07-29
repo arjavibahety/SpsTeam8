@@ -29,9 +29,7 @@ public class JoinServlet extends HttpServlet {
     public void init() {
         try {
             FirebaseOptions options = joinService.getFirebaseOptions();
-            if (FirebaseApp.getApps().isEmpty()) {
-                FirebaseApp.initializeApp(options);
-            }
+            FirebaseApp.initializeApp(options);
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
@@ -54,8 +52,9 @@ public class JoinServlet extends HttpServlet {
 
         JoinResponse joinResponse = joinService.executePost(joinRequest.build());
 
-        response.setStatus(200);
+        response.setContentType("application/json; charset=UTF-8;");
         response.getWriter().println(JsonFormat.printer().print(joinResponse));
+        response.setStatus(200);
     }
 
     @Override
