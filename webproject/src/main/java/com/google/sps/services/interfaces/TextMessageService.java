@@ -8,5 +8,5 @@ import com.google.sps.protoc.TextMessageProtoc.TextMessageResponse;
 
 public interface TextMessageService {
     public FirebaseOptions getFirebaseOptions() throws IOException;
-    public TextMessageResponse handleRequest(TextMessageRequest textMessageRequest);
+    public TextMessageResponse execute(TextMessageRequest textMessageRequest);
 }

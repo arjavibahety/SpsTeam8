@@ -52,7 +52,7 @@ public class TextMessageServlet extends HttpServlet {
         textMessageRequest.setMessage(message);
         textMessageRequest.setRoomId(roomID);
 
-        TextMessageResponse textMessageResponse = textMessageService.handleRequest(textMessageRequest.build());
+        TextMessageResponse textMessageResponse = textMessageService.execute(textMessageRequest.build());
 
         response.setContentType("application/json; charset=UTF-8;");
         response.getWriter().println(JsonFormat.printer().print(textMessageResponse));

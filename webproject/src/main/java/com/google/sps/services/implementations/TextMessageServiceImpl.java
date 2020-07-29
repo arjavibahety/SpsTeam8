@@ -32,7 +32,7 @@ public class TextMessageServiceImpl implements TextMessageService {
     }
 
     @Override
-    public TextMessageResponse handleRequest(TextMessageRequest textMessageRequest) {
+    public TextMessageResponse execute(TextMessageRequest textMessageRequest) {
         String message = textMessageRequest.getMessage();
         String roomID = textMessageRequest.getRoomId();
         String referrer = textMessageRequest.getReferrer();
