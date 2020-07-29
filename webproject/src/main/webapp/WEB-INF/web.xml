@@ -57,14 +57,14 @@
   </servlet-mapping>
 
   <!-- Blobstore Servlets -->
-  <servlet>
-    <servlet-name>BlobstoreServlet</servlet-name>
-    <servlet-class>com.google.sps.servlets.BlobstoreServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>BlobstoreServlet</servlet-name>
-    <url-pattern>/blobstore</url-pattern>
-  </servlet-mapping>
+<!--  <servlet>-->
+<!--    <servlet-name>BlobstoreServlet</servlet-name>-->
+<!--    <servlet-class>com.google.sps.servlets.BlobstoreServlet</servlet-class>-->
+<!--  </servlet>-->
+<!--  <servlet-mapping>-->
+<!--    <servlet-name>BlobstoreServlet</servlet-name>-->
+<!--    <url-pattern>/blobstore</url-pattern>-->
+<!--  </servlet-mapping>-->
 
   <servlet>
     <servlet-name>FormHandlerServlet</servlet-name>

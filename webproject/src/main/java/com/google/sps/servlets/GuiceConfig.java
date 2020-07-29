@@ -22,6 +22,7 @@ public class GuiceConfig extends GuiceServletContextListener {
         bind(LandingService.class).to(LandingServiceImpl.class);
         bind(TextMessageService.class).to(TextMessageServiceImpl.class);
         serve("/landing").with(LandingServlet.class);
+        serve("/blobstore").with(BlobstoreServlet.class);
       }
     });
   }
