@@ -47,14 +47,14 @@
   </servlet-mapping>
 
   <!-- Join Servlet -->
-  <servlet>
+  <!-- <servlet>
     <servlet-name>JoinServlet</servlet-name>
     <servlet-class>com.google.sps.servlets.JoinServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>JoinServlet</servlet-name>
     <url-pattern>/join</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> -->
 
   <!-- Blobstore Servlets -->
 <!--  <servlet>-->
