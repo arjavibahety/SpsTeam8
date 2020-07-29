@@ -15,9 +15,9 @@ public class MyGuiceServletConfig extends GuiceServletContextListener {
     return Guice.createInjector(new ServletModule() {
       @Override
       protected void configureServlets() {
-        super.configureServlets();
-        serve("/landing*").with(LandingServlet.class);
+        // super.configureServlets();
         bind(LandingService.class).to(LandingServiceImpl.class);
+        serve("/*").with(LandingServlet.class);
       }
     });
   }
