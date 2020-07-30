@@ -43,7 +43,7 @@ public class JoinServiceImpl implements JoinService {
     }
 
     @Override
-    public void executePost(JoinRequest joinRequest) {
+    public JoinResponse executePost(JoinRequest joinRequest) {
         User user = getCurrentUser();
         String userEmail = user.getEmail();
         
@@ -52,11 +52,11 @@ public class JoinServiceImpl implements JoinService {
                 .push()
                 .setValueAsync(new UserRoom(userEmail, joinRequest.getRoomId()));
 
-        // JoinResponse.Builder joinResponse = JoinResponse.newBuilder();
-        // joinResponse.setRoomId(joinRequest.getRoomId());
-        // joinResponse.setTimestamp(getTimestamp());
+        JoinResponse.Builder joinResponse = JoinResponse.newBuilder();
+        joinResponse.setRoomId(joinRequest.getRoomId());
+        joinResponse.setTimestamp(getTimestamp());
 
-        // return joinResponse.build();
+        return joinResponse.build();
     }
 
     @Override

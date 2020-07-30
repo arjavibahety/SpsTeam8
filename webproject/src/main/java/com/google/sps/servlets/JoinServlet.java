@@ -46,49 +46,22 @@ public class JoinServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        AuthenticationHandler auth = new AuthenticationHandler();
+        AuthenticationHandler auth = joinService.getAuthenticationHandler();
         if (!auth.isUserLoggedIn()) {
             response.setStatus(400);
             return;
         }
 
-        User user = (new AuthenticationHandler()).getCurrentUser();
-        String userEmail = user.getEmail();
         String roomId = request.getParameter("roomId");
-        for (String name: Collections.list(request.getParameterNames())) {
-            System.out.println(name);
-        }
-        FirebaseDatabase.getInstance().getReference("UserRoom").push().setValueAsync(new UserRoom(userEmail, roomId));
 
+        JoinRequest.Builder joinRequest = JoinRequest.newBuilder();
+        joinRequest.setRoomId(roomId);
+
+        JoinResponse joinResponse = joinService.executePost(joinRequest.build());
+
+        response.setContentType("application/json; charset=UTF-8;");
+        response.getWriter().println(JsonFormat.printer().print(joinResponse));
         response.setStatus(200);
-        response.getWriter().println(roomId);
-        
-        
-        // AuthenticationHandler auth = joinService.getAuthenticationHandler();
-        // if (!auth.isUserLoggedIn()) {
-        //     response.setStatus(400);
-        //     return;
-        // }
-
-        // String roomId = request.getParameter("roomId");
-
-        // JoinRequest.Builder joinRequest = JoinRequest.newBuilder();
-        // joinRequest.setRoomId(roomId);
-
-        // // JoinResponse joinResponse = joinService.executePost(joinRequest.build());
-        // // joinService.executePost(joinRequest.build());
-
-        // User user = joinService.getCurrentUser();
-        // String userEmail = user.getEmail();
-        
-        // FirebaseDatabase.getInstance()
-        //         .getReference("UserRoom")
-        //         .push()
-        //         .setValueAsync(new UserRoom(userEmail, roomId));
-
-        // // response.setContentType("application/json; charset=UTF-8;");
-        // // response.getWriter().println(JsonFormat.printer().print(joinResponse));
-        // response.setStatus(200);
     }
 
     @Override

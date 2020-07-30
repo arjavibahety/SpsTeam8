@@ -11,7 +11,7 @@ import com.google.appengine.api.users.User;
 public interface JoinService {
     public FirebaseOptions getFirebaseOptions() throws IOException;
     public AuthenticationHandler getAuthenticationHandler();
-    public void executePost(JoinRequest joinRequest);
+    public JoinResponse executePost(JoinRequest joinRequest);
     public String executeGet(JoinRequest joinRequest) throws IOException;
     public User getCurrentUser();
 }
