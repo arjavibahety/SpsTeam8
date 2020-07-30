@@ -8,33 +8,21 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Timestamp;
 
-import com.google.inject.Provides;
 import com.google.appengine.api.users.User;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseOptions;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.sps.authentication.AuthenticationHandler;
-import com.google.sps.data.UserRoom;
-import com.google.sps.protoc.JoinProtoc.JoinRequest;
-import com.google.sps.protoc.JoinProtoc.JoinResponse;
-import com.google.sps.services.interfaces.JoinService;
+import com.google.sps.protoc.GetJoinProtoc.GetJoinRequest;
+import com.google.sps.services.interfaces.GetJoinService;
 
-public class JoinServiceImpl implements JoinService {
+public class GetJoinServiceImpl implements GetJoinService {
     AuthenticationHandler auth;
-    
-    @Override
-    public AuthenticationHandler getAuthenticationHandler() {
-        if (auth == null) {
-            auth = new AuthenticationHandler();    
-        }
-        return auth;
-    }
 
     @Override
     public FirebaseOptions getFirebaseOptions() throws IOException {
         // Fetch the service account key JSON file contents
         FileInputStream serviceAccount = new FileInputStream("./key.json");
-        
+
         // Initialize the app with a service account, granting admin privileges
         return new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
@@ -43,25 +31,8 @@ public class JoinServiceImpl implements JoinService {
     }
 
     @Override
-    public JoinResponse executePost(JoinRequest joinRequest) {
-        User user = getCurrentUser();
-        String userEmail = user.getEmail();
-        
-        FirebaseDatabase.getInstance()
-                .getReference("UserRoom")
-                .push()
-                .setValueAsync(new UserRoom(userEmail, joinRequest.getRoomId()));
-
-        JoinResponse.Builder joinResponse = JoinResponse.newBuilder();
-        joinResponse.setRoomId(joinRequest.getRoomId());
-        joinResponse.setTimestamp(getTimestamp());
-
-        return joinResponse.build();
-    }
-
-    @Override
-    public String executeGet(JoinRequest joinRequest) throws IOException {
-        String roomId = joinRequest.getRoomId();
+    public String execute(GetJoinRequest getJoinRequest) throws IOException {
+        String roomId = getJoinRequest.getRoomId();
         User user = getCurrentUser();
         String userEmail = user.getEmail();
 
@@ -89,6 +60,13 @@ public class JoinServiceImpl implements JoinService {
 
     public User getCurrentUser() {
         return getAuthenticationHandler().getCurrentUser();
+    }
+
+    public AuthenticationHandler getAuthenticationHandler() {
+        if (auth == null) {
+            auth = new AuthenticationHandler();
+        }
+        return auth;
     }
 
     public long getTimestamp() {

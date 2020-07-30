@@ -7,12 +7,14 @@ import com.google.inject.servlet.ServletModule;
 import com.google.sps.services.implementations.BlobstoreServiceImpl;
 import com.google.sps.services.implementations.CloseRoomServiceImpl;
 import com.google.sps.services.implementations.EntryServiceImpl;
-import com.google.sps.services.implementations.JoinServiceImpl;
+import com.google.sps.services.implementations.GetJoinServiceImpl;
+import com.google.sps.services.implementations.PostJoinServiceImpl;
 import com.google.sps.services.implementations.TextMessageServiceImpl;
 import com.google.sps.services.interfaces.BlobstoreService;
 import com.google.sps.services.interfaces.CloseRoomService;
 import com.google.sps.services.interfaces.EntryService;
-import com.google.sps.services.interfaces.JoinService;
+import com.google.sps.services.interfaces.GetJoinService;
+import com.google.sps.services.interfaces.PostJoinService;
 import com.google.sps.services.interfaces.LandingService;
 import com.google.sps.services.implementations.LandingServiceImpl;
 import com.google.sps.services.interfaces.TextMessageService;
@@ -31,7 +33,8 @@ public class GuiceConfig extends GuiceServletContextListener {
         bind(TextMessageService.class).to(TextMessageServiceImpl.class);
         bind(EntryService.class).to(EntryServiceImpl.class);
         bind(CloseRoomService.class).to(CloseRoomServiceImpl.class);
-        bind(JoinService.class).to(JoinServiceImpl.class);
+        bind(PostJoinService.class).to(PostJoinServiceImpl.class);
+        bind(GetJoinService.class).to(GetJoinServiceImpl.class);
 
         serve("/landing").with(LandingServlet.class);
         // serve("/listings").with(LandingServlet.class);
@@ -43,7 +46,8 @@ public class GuiceConfig extends GuiceServletContextListener {
         serve("/blobstore").with(BlobstoreServlet.class);
         serve("/closeRoom").with(CloseRoomServlet.class);
         serve("/text-message").with(TextMessageServlet.class);
-        serve("/join").with(JoinServlet.class);
+        serve("/postJoin").with(PostJoinServlet.class);
+        serve("/getJoin").with(GetJoinServlet.class);
         // serve("/myOrder").with(MyOrderServlet.class);
         // serve("/order").with(OrderServlet.class);
         serve("/").with(EntryServlet.class);

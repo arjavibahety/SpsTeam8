@@ -2,13 +2,13 @@ syntax = "proto2";
 
 package com.google.sps.protoc;
 
-option java_outer_classname = "JoinProtoc";
+option java_outer_classname = "GetJoinProtoc";
 
-message JoinRequest {
+message GetJoinRequest {
   required string roomId = 1;
 }
 
-message JoinResponse {
+message GetJoinResponse {
   required string roomId = 1;
   required uint64 timestamp = 2;
 }

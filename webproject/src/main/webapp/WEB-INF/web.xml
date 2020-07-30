@@ -50,7 +50,7 @@
   <!-- Join Servlet -->
   <!-- <servlet>
     <servlet-name>JoinServlet</servlet-name>
-    <servlet-class>com.google.sps.servlets.JoinServlet</servlet-class>
+    <servlet-class>com.google.sps.servlets.PostJoinServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>JoinServlet</servlet-name>
