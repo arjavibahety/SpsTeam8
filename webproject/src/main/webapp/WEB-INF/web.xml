@@ -17,16 +17,6 @@
     <listener-class>com.google.sps.servlets.GuiceConfig</listener-class>
   </listener>
 
-  <!-- Landing Servlet -->
-  <!-- <servlet>
-    <servlet-name>LandingServlet</servlet-name>
-    <servlet-class>com.google.sps.servlets.LandingServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LandingServlet</servlet-name>
-    <url-pattern>/landing</url-pattern>
-  </servlet-mapping> -->
-
   <!-- Listings Servlet -->
   <servlet>
     <servlet-name>ListingsServlet</servlet-name>
@@ -47,26 +37,6 @@
     <url-pattern>/myRooms</url-pattern>
   </servlet-mapping>
 
-  <!-- Join Servlet -->
-  <!-- <servlet>
-    <servlet-name>JoinServlet</servlet-name>
-    <servlet-class>com.google.sps.servlets.PostJoinServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>JoinServlet</servlet-name>
-    <url-pattern>/join</url-pattern>
-  </servlet-mapping> -->
-
-  <!-- Blobstore Servlets -->
- <!-- <servlet>
-   <servlet-name>BlobstoreServlet</servlet-name>
-   <servlet-class>com.google.sps.servlets.BlobstoreServlet</servlet-class>
- </servlet>
- <servlet-mapping>
-   <servlet-name>BlobstoreServlet</servlet-name>
-   <url-pattern>/blobstore</url-pattern>
- </servlet-mapping> -->
-
   <servlet>
     <servlet-name>FormHandlerServlet</servlet-name>
     <servlet-class>com.google.sps.servlets.FormHandlerServlet</servlet-class>
@@ -75,16 +45,6 @@
     <servlet-name>FormHandlerServlet</servlet-name>
     <url-pattern>/my-form-handler</url-pattern>
   </servlet-mapping>
-
-  <!-- Text Message Servlet -->
- <!-- <servlet>
-   <servlet-name>TextMessageServlet</servlet-name>
-   <servlet-class>com.google.sps.servlets.TextMessageServlet</servlet-class>
- </servlet>
- <servlet-mapping>
-   <servlet-name>TextMessageServlet</servlet-name>
-   <url-pattern>/text-message</url-pattern>
- </servlet-mapping> -->
 
   <!-- Login Servlet -->
   <servlet>
@@ -125,26 +85,6 @@
     <servlet-name>UsernameServlet</servlet-name>
     <url-pattern>/username</url-pattern>
   </servlet-mapping>
-
-  <!-- Close Room Servlet -->
- <!-- <servlet>
-   <servlet-name>CloseRoomServlet</servlet-name>
-   <servlet-class>com.google.sps.servlets.CloseRoomServlet</servlet-class>
- </servlet>
- <servlet-mapping>
-   <servlet-name>CloseRoomServlet</servlet-name>
-   <url-pattern>/closeRoom</url-pattern>
- </servlet-mapping> -->
-
-  <!-- Entry Servlet -->
- <!-- <servlet>
-   <servlet-name>EntryServlet</servlet-name>
-   <servlet-class>com.google.sps.servlets.EntryServlet</servlet-class>
- </servlet>
- <servlet-mapping>
-   <servlet-name>EntryServlet</servlet-name>
-   <url-pattern>/</url-pattern>
- </servlet-mapping> -->
 
   <!-- MyOrder Servlet -->
   <servlet>
