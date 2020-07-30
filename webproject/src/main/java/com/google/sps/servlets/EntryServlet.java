@@ -1,6 +1,5 @@
 package com.google.sps.servlets;
 
-import com.google.sps.authentication.AuthenticationHandler;
 import com.google.sps.services.interfaces.EntryService;
 
 import java.io.IOException;
