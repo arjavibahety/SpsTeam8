@@ -9,12 +9,17 @@ import com.google.sps.protoc.JoinProtoc.JoinRequest;
 import com.google.sps.protoc.JoinProtoc.JoinResponse;
 
 import java.io.*;
+import java.util.Collections;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.appengine.api.users.User;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.sps.data.UserRoom;
 
 @Singleton
 public class JoinServlet extends HttpServlet {
@@ -29,7 +34,9 @@ public class JoinServlet extends HttpServlet {
     public void init() {
         try {
             FirebaseOptions options = joinService.getFirebaseOptions();
-            FirebaseApp.initializeApp(options);
+            if (FirebaseApp.getApps().isEmpty()) {
+                FirebaseApp.initializeApp(options);
+            }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
@@ -39,22 +46,49 @@ public class JoinServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        AuthenticationHandler auth = joinService.getAuthenticationHandler();
+        AuthenticationHandler auth = new AuthenticationHandler();
         if (!auth.isUserLoggedIn()) {
             response.setStatus(400);
             return;
         }
 
+        User user = (new AuthenticationHandler()).getCurrentUser();
+        String userEmail = user.getEmail();
         String roomId = request.getParameter("roomId");
+        for (String name: Collections.list(request.getParameterNames())) {
+            System.out.println(name);
+        }
+        FirebaseDatabase.getInstance().getReference("UserRoom").push().setValueAsync(new UserRoom(userEmail, roomId));
 
-        JoinRequest.Builder joinRequest = JoinRequest.newBuilder();
-        joinRequest.setRoomId(roomId);
-
-        JoinResponse joinResponse = joinService.executePost(joinRequest.build());
-
-        response.setContentType("application/json; charset=UTF-8;");
-        response.getWriter().println(JsonFormat.printer().print(joinResponse));
         response.setStatus(200);
+        response.getWriter().println(roomId);
+        
+        
+        // AuthenticationHandler auth = joinService.getAuthenticationHandler();
+        // if (!auth.isUserLoggedIn()) {
+        //     response.setStatus(400);
+        //     return;
+        // }
+
+        // String roomId = request.getParameter("roomId");
+
+        // JoinRequest.Builder joinRequest = JoinRequest.newBuilder();
+        // joinRequest.setRoomId(roomId);
+
+        // // JoinResponse joinResponse = joinService.executePost(joinRequest.build());
+        // // joinService.executePost(joinRequest.build());
+
+        // User user = joinService.getCurrentUser();
+        // String userEmail = user.getEmail();
+        
+        // FirebaseDatabase.getInstance()
+        //         .getReference("UserRoom")
+        //         .push()
+        //         .setValueAsync(new UserRoom(userEmail, roomId));
+
+        // // response.setContentType("application/json; charset=UTF-8;");
+        // // response.getWriter().println(JsonFormat.printer().print(joinResponse));
+        // response.setStatus(200);
     }
 
     @Override

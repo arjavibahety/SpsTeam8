@@ -24,6 +24,8 @@ public class GuiceConfig extends GuiceServletContextListener {
     return Guice.createInjector(new ServletModule() {
       @Override
       protected void configureServlets() {
+        super.configureServlets();
+
         bind(BlobstoreService.class).to(BlobstoreServiceImpl.class);
         bind(LandingService.class).to(LandingServiceImpl.class);
         bind(TextMessageService.class).to(TextMessageServiceImpl.class);
@@ -32,10 +34,18 @@ public class GuiceConfig extends GuiceServletContextListener {
         bind(JoinService.class).to(JoinServiceImpl.class);
 
         serve("/landing").with(LandingServlet.class);
+        // serve("/listings").with(LandingServlet.class);
+        // serve("/myRooms").with(MyRoomsServlet.class);
+        // serve("/my-form-handler").with(FormHandlerServlet.class);
+        // serve("/login").with(LoginServlet.class);
+        // serve("/logout").with(LogoutServlet.class);
+        // serve("/username").with(UsernameServlet.class);
         serve("/blobstore").with(BlobstoreServlet.class);
         serve("/closeRoom").with(CloseRoomServlet.class);
-        // serve("/text-message").with(TextMessageServlet.class);
-        // serve("/join").with(JoinServlet.class);
+        serve("/text-message").with(TextMessageServlet.class);
+        serve("/join").with(JoinServlet.class);
+        // serve("/myOrder").with(MyOrderServlet.class);
+        // serve("/order").with(OrderServlet.class);
         serve("/").with(EntryServlet.class);
       }
     });

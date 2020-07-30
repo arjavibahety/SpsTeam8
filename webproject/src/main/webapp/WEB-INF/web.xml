@@ -17,14 +17,14 @@
   </listener>
 
   <!-- Landing Servlet -->
-  <servlet>
+  <!-- <servlet>
     <servlet-name>LandingServlet</servlet-name>
     <servlet-class>com.google.sps.servlets.LandingServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LandingServlet</servlet-name>
     <url-pattern>/landing</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> -->
 
   <!-- Listings Servlet -->
   <servlet>
@@ -47,24 +47,24 @@
   </servlet-mapping>
 
   <!-- Join Servlet -->
-  <servlet>
+  <!-- <servlet>
     <servlet-name>JoinServlet</servlet-name>
     <servlet-class>com.google.sps.servlets.JoinServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>JoinServlet</servlet-name>
     <url-pattern>/join</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> -->
 
   <!-- Blobstore Servlets -->
- <servlet>-->
+ <!-- <servlet>
    <servlet-name>BlobstoreServlet</servlet-name>
    <servlet-class>com.google.sps.servlets.BlobstoreServlet</servlet-class>
  </servlet>
  <servlet-mapping>
    <servlet-name>BlobstoreServlet</servlet-name>
    <url-pattern>/blobstore</url-pattern>
- </servlet-mapping>
+ </servlet-mapping> -->
 
   <servlet>
     <servlet-name>FormHandlerServlet</servlet-name>
@@ -76,14 +76,14 @@
   </servlet-mapping>
 
   <!-- Text Message Servlet -->
- <servlet>
+ <!-- <servlet>
    <servlet-name>TextMessageServlet</servlet-name>
    <servlet-class>com.google.sps.servlets.TextMessageServlet</servlet-class>
  </servlet>
  <servlet-mapping>
    <servlet-name>TextMessageServlet</servlet-name>
    <url-pattern>/text-message</url-pattern>
- </servlet-mapping>
+ </servlet-mapping> -->
 
   <!-- Login Servlet -->
   <servlet>
@@ -126,24 +126,24 @@
   </servlet-mapping>
 
   <!-- Close Room Servlet -->
- <servlet>
+ <!-- <servlet>
    <servlet-name>CloseRoomServlet</servlet-name>
    <servlet-class>com.google.sps.servlets.CloseRoomServlet</servlet-class>
  </servlet>
  <servlet-mapping>
    <servlet-name>CloseRoomServlet</servlet-name>
    <url-pattern>/closeRoom</url-pattern>
- </servlet-mapping>
+ </servlet-mapping> -->
 
   <!-- Entry Servlet -->
- <servlet>
+ <!-- <servlet>
    <servlet-name>EntryServlet</servlet-name>
    <servlet-class>com.google.sps.servlets.EntryServlet</servlet-class>
  </servlet>
  <servlet-mapping>
    <servlet-name>EntryServlet</servlet-name>
    <url-pattern>/</url-pattern>
- </servlet-mapping>
+ </servlet-mapping> -->
 
   <!-- MyOrder Servlet -->
   <servlet>
