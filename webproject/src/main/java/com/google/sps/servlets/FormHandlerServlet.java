@@ -1,5 +1,8 @@
 package com.google.sps.servlets;
 
+import com.google.gson.Gson;
+import com.google.sps.firebase.Firebase;
+
 import com.google.sps.authentication.AuthenticationHandler;
 import com.google.appengine.api.users.User;
 import com.google.sps.data.Message;
@@ -30,26 +33,10 @@ import javax.servlet.http.HttpServletResponse;
 
 public class FormHandlerServlet extends HttpServlet {
     private static String username;
+    private static Gson gson = new Gson();
 
     @Override
     public void init() {
-        try {
-            // Fetch the service account key JSON file contents
-            FileInputStream serviceAccount = new FileInputStream("./key.json");
-
-            // Initialize the app with a service account, granting admin privileges
-            FirebaseOptions options = new FirebaseOptions.Builder()
-                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .setDatabaseUrl("https://summer20-sps-47.firebaseio.com")
-                .build();
-            if (FirebaseApp.getApps().isEmpty()) {
-                FirebaseApp.initializeApp(options);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
         AuthenticationHandler handler = new AuthenticationHandler();
         User curr = handler.getCurrentUser();
         username = curr.getNickname();
@@ -69,11 +56,10 @@ public class FormHandlerServlet extends HttpServlet {
 
         String[] array = referrer.split("\\?");
         String roomID = array[1];
-        FirebaseDatabase.getInstance()
-            .getReference("messages")
-            .child(roomID)
-            .push()
-            .setValueAsync(new Message(username, imageUrl, "image"));
+
+        String imageJson = gson.toJson(new Message(username, imageUrl, "image"));
+        Firebase.sendRequest("https://summer20-sps-47.firebaseio.com/messages/" + roomID + ".json", "POST", imageJson);
+
         response.sendRedirect(referrer);
     }
 
