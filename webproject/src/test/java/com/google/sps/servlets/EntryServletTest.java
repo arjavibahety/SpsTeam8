@@ -29,23 +29,31 @@ public class EntryServletTest {
 
     @Test
     public void doGet_loggedIn_redirectsToLoggedInPath() throws IOException, ServletException {
+        
+        // Arrange
         LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalUserServiceTestConfig())
             .setEnvIsLoggedIn(true);
         helper.setUp();
 
+        // Act
         entryServlet.doGet(request, response);
 
+        // Assert
         verify(response).sendRedirect(EntryServlet.LOGGED_IN_REDIRECT_PATH);
         helper.tearDown();
     }
 
     @Test
     public void doGet_loggedOut_redirectsToLoggedOutPath() throws IOException, ServletException {
+
+        // Arrange
         LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalUserServiceTestConfig());
         helper.setUp();
 
+        // Act
         entryServlet.doGet(request, response);
 
+        // Assert
         verify(response).sendRedirect(EntryServlet.LOGGED_OUT_REDIRECT_PATH);
         helper.tearDown();
     }
