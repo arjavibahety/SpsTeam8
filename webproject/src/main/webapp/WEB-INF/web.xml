@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <web-app xmlns="http://appengine.google.com/ns/1.0">
-  <!-- Landing Servlet -->
-  <servlet>
-    <servlet-name>LandingServlet</servlet-name>
-    <servlet-class>com.google.sps.servlets.LandingServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LandingServlet</servlet-name>
-    <url-pattern>/landing</url-pattern>
-  </servlet-mapping>
+  <!--  Guice -->
+  <filter>
+    <filter-name>guiceFilter</filter-name>
+    <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+    <async-supported>true</async-supported>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>guiceFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!-- Guice Servlet Context Listener -->
+  <listener>
+    <listener-class>com.google.sps.servlets.GuiceConfig</listener-class>
+  </listener>
 
   <!-- Listings Servlet -->
   <servlet>
@@ -28,16 +35,6 @@
   <servlet-mapping>
     <servlet-name>MyRoomsServlet</servlet-name>
     <url-pattern>/myRooms</url-pattern>
-  </servlet-mapping>
-
-  <!-- Join Servlet -->
-  <servlet>
-    <servlet-name>JoinServlet</servlet-name>
-    <servlet-class>com.google.sps.servlets.JoinServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>JoinServlet</servlet-name>
-    <url-pattern>/join</url-pattern>
   </servlet-mapping>
 
   <!-- Blobstore Servlets -->
@@ -88,7 +85,7 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
-  
+
   <!-- Room Servlet -->
   <servlet>
     <servlet-name>Room</servlet-name>
@@ -119,16 +116,6 @@
     <url-pattern>/closeRoom</url-pattern>
   </servlet-mapping>
 
-  <!-- Entry Servlet -->
-  <servlet>
-    <servlet-name>EntryServlet</servlet-name>
-    <servlet-class>com.google.sps.servlets.EntryServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>EntryServlet</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
-
   <!-- MyOrder Servlet -->
   <servlet>
     <servlet-name>MyOrderServlet</servlet-name>
@@ -148,5 +135,15 @@
     <servlet-name>OrderServlet</servlet-name>
     <url-pattern>/order</url-pattern>
   </servlet-mapping>
-  
+
+  <!-- Entry Servlet -->
+  <servlet>
+    <servlet-name>EntryServlet</servlet-name>
+    <servlet-class>com.google.sps.servlets.EntryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EntryServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
 </web-app>
