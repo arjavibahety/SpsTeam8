@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
  * A servlet which manages entry into the website.
  */
 public class EntryServlet extends HttpServlet {
+    public static final String LOGGED_IN_REDIRECT_PATH = "/listings";
+    public static final String LOGGED_OUT_REDIRECT_PATH = "/landing";
     private final AuthenticationHandler authenticationHandler;
 
     /**
@@ -31,9 +33,9 @@ public class EntryServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         if (authenticationHandler.isUserLoggedIn()) {
-            response.sendRedirect("/listings");
+            response.sendRedirect(LOGGED_IN_REDIRECT_PATH);
         } else {
-            response.sendRedirect("/landing");
+            response.sendRedirect(LOGGED_OUT_REDIRECT_PATH);
         }
     }
 }
