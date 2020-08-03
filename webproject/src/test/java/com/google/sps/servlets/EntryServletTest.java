@@ -9,15 +9,23 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
  * Test class for EntryServlet.
  */
 public class EntryServletTest {
-    private EntryServlet entryServlet = new EntryServlet();
-    private HttpServletRequest request = mock(HttpServletRequest.class);
-    private HttpServletResponse response = mock(HttpServletResponse.class);
+    private EntryServlet entryServlet;
+    private HttpServletRequest request;
+    private HttpServletResponse response;
+
+    @Before
+    public void setUp() {
+        entryServlet = new EntryServlet();
+        request = mock(HttpServletRequest.class);
+        response = mock(HttpServletResponse.class);
+    }
 
     @Test
     public void doGet_loggedIn_redirectsToLoggedInPath() throws IOException, ServletException {
