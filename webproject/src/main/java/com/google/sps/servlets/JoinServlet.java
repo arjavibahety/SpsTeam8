@@ -1,5 +1,8 @@
 package com.google.sps.servlets;
 
+import com.google.gson.Gson;
+import com.google.sps.firebase.Firebase;
+
 import com.google.appengine.api.users.User;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
@@ -18,24 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class JoinServlet extends HttpServlet {
-    @Override
-    public void init() {
-        try {
-            // Fetch the service account key JSON file contents
-            FileInputStream serviceAccount = new FileInputStream("./key.json");
-
-            // Initialize the app with a service account, granting admin privileges
-            FirebaseOptions options = new FirebaseOptions.Builder()
-                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                    .setDatabaseUrl("https://summer20-sps-47.firebaseio.com")
-                    .build();
-            FirebaseApp.initializeApp(options);
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+    private static Gson gson = new Gson();
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -48,10 +34,8 @@ public class JoinServlet extends HttpServlet {
         User user = (new AuthenticationHandler()).getCurrentUser();
         String userEmail = user.getEmail();
         String roomId = request.getParameter("roomId");
-        for (String name: Collections.list(request.getParameterNames())) {
-            System.out.println(name);
-        }
-        FirebaseDatabase.getInstance().getReference("UserRoom").push().setValueAsync(new UserRoom(userEmail, roomId));
+        String userRoomJson = gson.toJson(new UserRoom(userEmail, roomId));
+        Firebase.sendRequest("https://summer20-sps-47.firebaseio.com/UserRoom.json", "POST", userRoomJson);
 
         response.setStatus(200);
         response.getWriter().println(roomId);
