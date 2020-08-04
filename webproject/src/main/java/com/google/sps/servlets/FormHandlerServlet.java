@@ -1,16 +1,6 @@
 package com.google.sps.servlets;
 
-import com.google.gson.Gson;
-import com.google.sps.firebase.Firebase;
-
-import com.google.sps.authentication.AuthenticationHandler;
-import com.google.appengine.api.users.User;
-import com.google.sps.data.Message;
-import java.io.FileInputStream;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
 import com.google.auth.oauth2.GoogleCredentials;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.appengine.api.blobstore.BlobInfo;
 import com.google.appengine.api.blobstore.BlobInfoFactory;
 import com.google.appengine.api.blobstore.BlobKey;
@@ -20,12 +10,23 @@ import com.google.appengine.api.images.Image;
 import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.ServingUrlOptions;
+import com.google.appengine.api.users.User;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+
+import com.google.sps.authentication.AuthenticationHandler;
+import com.google.sps.data.Message;
+import com.google.sps.firebase.FirebaseHelper;
+
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.IllegalArgumentException;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,10 +34,10 @@ import javax.servlet.http.HttpServletResponse;
 
 public class FormHandlerServlet extends HttpServlet {
     private static String username;
-    private static Gson gson = new Gson();
 
     @Override
     public void init() {
+        FirebaseHelper.initialiseFirebaseApp();
         AuthenticationHandler handler = new AuthenticationHandler();
         User curr = handler.getCurrentUser();
         username = curr.getNickname();
@@ -57,9 +58,12 @@ public class FormHandlerServlet extends HttpServlet {
         String[] array = referrer.split("\\?");
         String roomID = array[1];
 
-        String imageJson = gson.toJson(new Message(username, imageUrl, "image"));
-        Firebase.sendRequest("https://summer20-sps-47.firebaseio.com/messages/" + roomID + ".json", "POST", imageJson);
-
+        FirebaseDatabase.getInstance()
+            .getReference("messages")
+            .child(roomID)
+            .push()
+            .setValueAsync(new Message(username, imageUrl, "image"));
+            
         response.sendRedirect(referrer);
     }
 
