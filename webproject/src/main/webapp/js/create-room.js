@@ -1,6 +1,6 @@
-window.onload = function() {
+$(document).ready(function() {
     getCategories();
-}
+});
 
 function getCategories() {
     let categoryBox = document.getElementById("category");

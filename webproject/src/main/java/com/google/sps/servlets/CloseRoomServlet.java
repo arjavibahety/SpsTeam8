@@ -1,8 +1,11 @@
 package com.google.sps.servlets;
 
-import com.google.gson.Gson;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.DatabaseError;
+
 import com.google.sps.authentication.AuthenticationHandler;
-import com.google.sps.firebase.Firebase;
+import com.google.sps.firebase.FirebaseHelper;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServlet;
@@ -13,8 +16,6 @@ import javax.servlet.http.HttpServletResponse;
  * A servlet which manages room closure.
  */
 public class CloseRoomServlet extends HttpServlet {
-    private static Gson gson = new Gson();
-
     /**
      * Called by the server close a room.
      * @param request An HttpServletRequest object that contains the request the client has made of the servlet.
@@ -23,17 +24,32 @@ public class CloseRoomServlet extends HttpServlet {
      */
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String roomId = request.getParameter("roomId");
+        FirebaseHelper.initialiseFirebaseApp();
+        String roomID = request.getParameter("roomId");
 
-        StringBuilder roomsUrlString = new StringBuilder("https://summer20-sps-47.firebaseio.com/rooms/");
-        roomsUrlString.append(roomId);
-        roomsUrlString.append(".json");
-        Firebase.sendRequest(roomsUrlString.toString(), "DELETE", "");
+        FirebaseDatabase.getInstance()
+            .getReference("rooms")
+            .child(roomID)
+            .removeValue(new DatabaseReference.CompletionListener() {
+                @Override
+                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                    if (databaseError != null) {
+                        System.out.println(databaseError.getMessage());
+                    }
+                }
+            });
 
-        StringBuilder userRoomUrlString = new StringBuilder("https://summer20-sps-47.firebaseio.com/UserRoom/");
-        userRoomUrlString.append(roomId);
-        userRoomUrlString.append(".json");
-        Firebase.sendRequest(userRoomUrlString.toString(), "DELETE", "");
+        FirebaseDatabase.getInstance()
+            .getReference("UserRoom")
+            .child(roomID)
+            .removeValue(new DatabaseReference.CompletionListener() {
+                @Override
+                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                    if (databaseError != null) {
+                        System.out.println(databaseError.getMessage());
+                    }
+                }
+            });
 
         response.sendRedirect("/");
     }

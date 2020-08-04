@@ -12,8 +12,6 @@ import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.ServingUrlOptions;
 import com.google.appengine.api.users.User;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
 
 import com.google.sps.authentication.AuthenticationHandler;
 import com.google.sps.data.Message;
