@@ -54,8 +54,9 @@ public class SimilarRoomsServlet extends HttpServlet {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                System.out.println("*******************************");
-                System.out.println(dataSnapshot.getValue());
+                for (DataSnapshot dataChild : dataSnapshot.getChildren()) {
+                    if (dataChild.getValue(""))
+                }
             }
 
             @Override
