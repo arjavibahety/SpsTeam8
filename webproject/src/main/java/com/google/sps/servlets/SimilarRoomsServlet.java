@@ -36,7 +36,9 @@ public class SimilarRoomsServlet extends HttpServlet {
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     .setDatabaseUrl("https://summer20-sps-47.firebaseio.com")
                     .build();
-            FirebaseApp.initializeApp(options);
+            if (FirebaseApp.getApps().isEmpty()) {
+                FirebaseApp.initializeApp(options);
+            }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
@@ -52,9 +54,8 @@ public class SimilarRoomsServlet extends HttpServlet {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Room room = dataSnapshot.getValue(Room.class);
                 System.out.println("*******************************");
-                System.out.println(room.toString());
+                System.out.println(dataSnapshot.getValue());
             }
 
             @Override
