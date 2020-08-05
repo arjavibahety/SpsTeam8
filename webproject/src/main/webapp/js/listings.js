@@ -62,6 +62,11 @@ async function joinRoom(roomId) {
     });
 }
 
+async function getSimilarRooms() {
+    const response = await fetch("/similarRooms");
+    console.log("Response: ", response);
+}
+
 function toChat(roomId) {
     window.location.href = `/roomChat.html?${roomId}`;
 }

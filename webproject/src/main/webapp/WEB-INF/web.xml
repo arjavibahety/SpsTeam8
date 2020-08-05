@@ -99,6 +99,15 @@
     <url-pattern>/room</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>SimilarRooms</servlet-name>
+    <servlet-class>com.google.sps.servlets.SimilarRoomsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SimilarRooms</servlet-name>
+    <url-pattern>/similarRooms</url-pattern>
+  </servlet-mapping>
+
   <!-- Username Servlet -->
   <servlet>
     <servlet-name>UsernameServlet</servlet-name>
