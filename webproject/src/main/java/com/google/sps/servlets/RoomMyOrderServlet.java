@@ -28,7 +28,7 @@ public class RoomMyOrderServlet extends RedirectServlet {
                             HttpServletResponse response) throws IOException, ServletException {
         String roomId = request.getParameter("roomId");
 
-        if (UserCheckUtil.isRoomMember(roomId)) {
+        if (userCheckUtil.isRoomMember(roomId)) {
             response.setContentType("text/html");
             response.getWriter().println(HtmlParser.parseHtmlFromFile("roomMyOrder.html"));
         } else {
