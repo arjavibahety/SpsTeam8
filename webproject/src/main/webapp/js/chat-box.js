@@ -1,4 +1,5 @@
-var roomID = window.location.search.substr(1);
+var parameters = window.location.search.substr(1);
+var roomID = parameters.split('=')[1];
 var username = null;
 window.onload = function() {
     fetchBlobstoreUrl();

@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 
 /**
- * A servlet which parses the html file for create-room.
+ * A servlet which parses the html file for Geolocation.
  */
-public class MyRoomsServlet extends RedirectServlet {
+public class GeolocationServlet extends RedirectServlet {
     public void doGetAuthenticated(HttpServletRequest request, 
-                            HttpServletResponse response) throws IOException, ServletException {        
+                            HttpServletResponse response) throws IOException, ServletException {      
         response.setContentType("text/html");
-        response.getWriter().println(HtmlParser.parseHtmlFromFile("my-rooms.html"));
+        response.getWriter().println(HtmlParser.parseHtmlFromFile("geolocation.html"));
     };
 }

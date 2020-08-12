@@ -1,6 +1,8 @@
-var roomID = window.location.search.substr(1);
+var parameters = window.location.search.substr(1);
+var roomID = parameters.split('=')[1];
 window.onload = function() {
-    roomID = window.location.search.substr(1);
+    parameters = window.location.search.substr(1);
+    roomID = parameters.split('=')[1];
     getRoomDetails(roomID);
     getMyOrder();
     getHeaderLinks();
@@ -119,23 +121,7 @@ async function addOrder() {
     window.location.reload();
 }
 
-async function deleteOrder(orderID) {
-    let response = await $.ajax({
-        type: 'DELETE',
-        url: "/myOrder",
-        data: {
-            'orderId': orderID
-        },
-    });
-  
-    if (response.status == 200) {
-      window.alert("Your order has been deleted!")
-    }
-  
-    window.location.reload();
-}
-
 function getHeaderLinks() {
-    document.getElementById('chat-link').href = '/roomChat.html?' + roomID;
-    document.getElementById('all-orders-link').href = '/roomAllOrders.html?' + roomID;
+    document.getElementById('chat-link').href = '/roomChat?roomId=' + roomID;
+    document.getElementById('all-orders-link').href = '/roomAllOrders?roomId=' + roomID;
 }
