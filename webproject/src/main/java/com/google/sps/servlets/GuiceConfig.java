@@ -59,6 +59,11 @@ public class GuiceConfig extends GuiceServletContextListener {
                 serve("/sendTextMessage").with(SendTextMessageServlet.class);
                 serve("/closeRoom").with(CloseRoomServlet.class);
                 serve("/username").with(UsernameServlet.class);
+                //serve("/myRooms").with(MyRoomsServlet.class);
+                serve("/userCheck").with(UserCheckServlet.class);
+                serve("/roomAllOrders").with(RoomAllOrdersServlet.class);
+                serve("/roomMyOrder").with(RoomMyOrderServlet.class);
+                serve("/roomChat").with(RoomChatServlet.class);
             }
         });
     }

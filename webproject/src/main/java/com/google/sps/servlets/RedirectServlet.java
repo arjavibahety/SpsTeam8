@@ -1,16 +1,17 @@
-package com.google.sps.servlets.redirect;
+package com.google.sps.servlets;
 
 import com.google.sps.authentication.AuthenticationHandler;
 import java.io.IOException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
 
 /**
  * A servlet which manages redirecting to landing page.
  */
 public abstract class RedirectServlet extends HttpServlet {
-    private final AuthenticationHandler authenticationHandler;
+    public final AuthenticationHandler authenticationHandler;
     
     /**
      * Constructs an instance of the LogoutServlet class.
@@ -19,7 +20,8 @@ public abstract class RedirectServlet extends HttpServlet {
         authenticationHandler = new AuthenticationHandler();
     }
 
-    public abstract void doGetAuthenticated(HttpServletRequest request, HttpServletResponse response) throws IOException;
+    public abstract void doGetAuthenticated(HttpServletRequest request, HttpServletResponse response) 
+                                            throws IOException, ServletException;
 
     /**
      * Called by the server to manage access to webpage.
@@ -29,7 +31,7 @@ public abstract class RedirectServlet extends HttpServlet {
      * @throws IOException If an input or output error is detected when the servlet handles the server's request.
      */
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (authenticationHandler.isUserLoggedIn()) {
             doGetAuthenticated(request, response);
         } else {

@@ -1,6 +1,8 @@
-var roomID = window.location.search.substr(1);
+var parameters = window.location.search.substr(1);
+var roomID = parameters.split('=')[1];
 window.onload = function() {
-    roomID = window.location.search.substr(1);
+    parameters = window.location.search.substr(1);
+    roomID = parameters.split('=')[1];
     getRoomDetails(roomID);
     getAllOrders();
     getHeaderLinks();
@@ -74,6 +76,6 @@ async function getAllOrders() {
 }
 
 function getHeaderLinks() {
-    document.getElementById('chat-link').href = '/roomChat?' + roomID;
-    document.getElementById('my-order-link').href = '/roomMyOrder?' + roomID;
+    document.getElementById('chat-link').href = '/roomChat?roomId=' + roomID;
+    document.getElementById('my-order-link').href = '/roomMyOrder?roomId=' + roomID;
 }

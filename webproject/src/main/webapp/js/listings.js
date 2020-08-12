@@ -77,7 +77,7 @@ async function joinRoom(roomId) {
 }
 
 function toChat(roomId) {
-    window.location.href = `/roomChat?${roomId}`;
+    window.location.href = `/roomChat?roomId=${roomId}`;
 }
 
 function getSearchResults() {

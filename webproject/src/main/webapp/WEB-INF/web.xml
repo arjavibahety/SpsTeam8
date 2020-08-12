@@ -20,21 +20,11 @@
   <!-- Listings Servlet -->
   <servlet>
     <servlet-name>ListingsServlet</servlet-name>
-    <servlet-class>com.google.sps.servlets.redirect.ListingsServlet</servlet-class>
+    <servlet-class>com.google.sps.servlets.ListingsServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ListingsServlet</servlet-name>
     <url-pattern>/listings</url-pattern>
-  </servlet-mapping>
-
-  <!-- My Rooms Servlet -->
-  <servlet>
-    <servlet-name>MyRoomsServlet</servlet-name>
-    <servlet-class>com.google.sps.servlets.MyRoomsServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>MyRoomsServlet</servlet-name>
-    <url-pattern>/myRooms</url-pattern>
   </servlet-mapping>
 
   <!-- Blobstore Servlets -->
@@ -97,39 +87,39 @@
   </servlet-mapping>
 
   <!-- RoomChat Servlet -->
-  <servlet>
+  <!-- <servlet>
     <servlet-name>RoomChatServlet</servlet-name>
     <servlet-class>com.google.sps.servlets.redirect.RoomChatServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RoomChatServlet</servlet-name>
     <url-pattern>/roomChat</url-pattern>
-  </servlet-mapping>  
+  </servlet-mapping>  -->
 
   <!-- RoomMyOrder Servlet -->
-  <servlet>
+  <!-- <servlet>
     <servlet-name>RoomMyOrderServlet</servlet-name>
     <servlet-class>com.google.sps.servlets.redirect.RoomMyOrderServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RoomMyOrderServlet</servlet-name>
     <url-pattern>/roomMyOrder</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> -->
 
   <!-- RoomAllOrders Servlet -->
-  <servlet>
+    <!-- <servlet>
     <servlet-name>RoomAllOrdersServlet</servlet-name>
     <servlet-class>com.google.sps.servlets.redirect.RoomAllOrdersServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RoomAllOrdersServlet</servlet-name>
     <url-pattern>/roomAllOrders</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> -->
 
   <!-- Geolocation Servlet -->
   <servlet>
     <servlet-name>GeolocationServlet</servlet-name>
-    <servlet-class>com.google.sps.servlets.redirect.GeolocationServlet</servlet-class>
+    <servlet-class>com.google.sps.servlets.GeolocationServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>GeolocationServlet</servlet-name>
@@ -139,7 +129,7 @@
   <!-- Create Room Servlet -->
   <servlet>
     <servlet-name>CreateRoomServlet</servlet-name>
-    <servlet-class>com.google.sps.servlets.redirect.CreateRoomServlet</servlet-class>
+    <servlet-class>com.google.sps.servlets.CreateRoomServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CreateRoomServlet</servlet-name>
@@ -147,13 +137,22 @@
   </servlet-mapping>  
   
   <!-- My Rooms Servlet -->
-  <servlet>
+    <servlet>
     <servlet-name>MyRoomsServlet</servlet-name>
-    <servlet-class>com.google.sps.servlets.redirect.MyRoomsServlet</servlet-class>
+    <servlet-class>com.google.sps.servlets.MyRoomsServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MyRoomsServlet</servlet-name>
     <url-pattern>/myRooms</url-pattern>
   </servlet-mapping>
 
+  <!-- User Check Servlet -->
+  <!--  <servlet>
+    <servlet-name>UserCheckServlet</servlet-name>
+    <servlet-class>com.google.sps.servlets.UserCheckServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserCheckServlet</servlet-name>
+    <url-pattern>/userCheck</url-pattern>
+  </servlet-mapping>-->
 </web-app>
