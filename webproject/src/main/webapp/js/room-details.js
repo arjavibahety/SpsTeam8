@@ -6,6 +6,9 @@ async function getRoomDetails(roomID) {
     var userRoomData = await userRoomResponse.json();
     let numUsers = Object.keys(userRoomData).length;
 
+    let currentUserResponse = await fetch('/username');
+    let currentUser = await currentUserResponse.text();
+
     let roomDetailsContainer = document.getElementById("room-details-container");
     let roomDetailsString = `
     <div>
@@ -37,13 +40,16 @@ async function getRoomDetails(roomID) {
     <br/>
     <br />
     </div>
-    
-    <div class="room-details-exit">
-    <form action="/closeRoom" method="post" >
-    <button type="submit" class="btn btn-danger" />Delete & Exit Room</button>
-    <input type="hidden" name="roomId" value="${roomID}">
-    </form>
-    </div>`;
+    `;
+
+    if (roomDetails.creator === currentUser) {
+      roomDetailsString += `<div class="room-details-exit">
+            <form action="/closeRoom" method="post" >
+            <button type="submit" class="btn btn-danger" />Delete & Exit Room</button>
+            <input type="hidden" name="roomId" value="${roomID}">
+            </form>
+            </div>`;
+    }
 
     roomDetailsContainer.innerHTML = roomDetailsString;
 }
